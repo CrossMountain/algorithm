@@ -21,3 +21,31 @@ function arrayToListNode(arr){
     }
     return head
 }
+
+//数组中的极值与位置 
+//左开右闭  [left,right)
+function getLimitInArray(arr, left, right) {
+    if (left >= right) return null
+    var min = {
+        val: arr[0],
+        index: 0
+    }
+    var max = {
+        val: arr[0],
+        index: 0
+    }
+    for (var i = left; i < right; i++) {
+        if (arr[i] > max.val) {
+            max.val = arr[i]
+            max.index = i
+        }
+        if (arr[i] < min.val) {
+            min.val = arr[i]
+            max.index = i
+        }
+    }
+    return {
+        min: min,
+        max: max
+    }
+}

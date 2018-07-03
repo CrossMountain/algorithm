@@ -1,41 +1,25 @@
-//层序遍历 
-function PrintFromTopToBottom(root) {
-    if(!root) return []
-
-    var quese = []  //队列
-    quese.push(root)
-    var output = []
-
-    while (quese.length) {
-        var temp=quese.shift()  //首结节
-        output.push(temp.val)
-        if(temp.left) quese.push(temp.left) //往后放
-        if(temp.right) quese.push(temp.right)
+function VerifySquenceOfBST(sequence) {
+    if (sequence.length === 0) return true
+    var root=sequence[sequence.length-1]
+    var lastIndex=0
+    for(var i=0;i<sequence.length-1;i++){
+        if(sequence[i]>root){
+            lastIndex=i
+            break
+        }
     }
-    return output
+    var left=sequence.slice(0,lastIndex)
+    var right=sequence.slice(lastIndex,sequence.length-1)
+    for(var i=0;i<right.length;i++){
+        if(right[i]<right[0]){
+            return false
+        }
+    }
+    return VerifySquenceOfBST(left)&&VerifySquenceOfBST(right)
 }
 
-var quese1 = [1, 2, 4, 5, 3, 6, 7]
-var quese2 = [4, 2, 5, 1, 6, 3, 7]
 
-function reConstructBinaryTree(pre, vin) {
-    if (pre.length === 0 || vin.length === 0) return null
-
-    var headIndexInVin = vin.indexOf(pre[0])
-    //左子树的前序与中序
-    var leftPre = pre.slice(1, headIndexInVin + 1)
-    var leftVin = vin.slice(0, headIndexInVin)
-    //右子树的前序与中序
-    var rightPre = pre.slice(headIndexInVin + 1)
-    var rightVin = vin.slice(headIndexInVin + 1)
-
-    return {
-        val: pre[0],
-        left: reConstructBinaryTree(leftPre, leftVin),
-        right: reConstructBinaryTree(rightPre, rightVin)
-    }
-}
-
-var tree = reConstructBinaryTree(quese1, quese2)
-var res = PrintFromTopToBottom(tree)
+    
+var arr=[1,3,2]
+var res=VerifySquenceOfBST(arr)
 console.log(res)
