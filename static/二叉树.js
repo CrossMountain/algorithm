@@ -10,8 +10,12 @@
  * @param  {Array} vin 中序遍历
  * @return {Object}     [根节点]
  */
+//层序遍历{1,2,3,4,5,6,7}
 //var arr1 = [1, 2, 4, 5, 3, 6, 7]
 //var arr2 = [4, 2, 5, 1, 6, 3, 7]  //构成向左往右数的1到7
+//二叉搜索树:
+//var arr1=[4,2,1,3,6,5,7]
+//var arr2=[1,2,3,4,5,6,7]
 function reConstructBinaryTree(pre, vin) {
     if (pre.length === 0 || vin.length === 0) return null
 
@@ -87,4 +91,28 @@ function PrintFromTopToBottom(root) {
         if(temp.right) quese.push(temp.right)
     }
     return output
+}
+
+//输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
+function Convert(rootNode) {
+    if (rootNode === null) return null
+    if (!rootNode.left && !rootNode.right) return rootNode
+
+    var left = Convert(rootNode.left)
+
+    var p = left
+    while (p !== null && p.right !== null) {
+        p = p.right
+    }
+    if (left !== null) {
+        p.right = rootNode
+    }
+    rootNode.left = p
+    var right = Convert(rootNode.right)
+    if (right !== null) {
+        right.left = rootNode
+
+    }
+    rootNode.right = right
+    return left !== null ? left : rootNode
 }

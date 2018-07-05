@@ -1,25 +1,23 @@
-function VerifySquenceOfBST(sequence) {
-    if (sequence.length === 0) return true
-    var root=sequence[sequence.length-1]
-    var lastIndex=0
-    for(var i=0;i<sequence.length-1;i++){
-        if(sequence[i]>root){
-            lastIndex=i
-            break
+function MoreThanHalfNum_Solution(arr)
+{
+    var obj={}
+    var res=0
+    arr.forEach(function(item,index){
+
+        if(obj[item]){
+        }else{
+            obj[item]=0
         }
-    }
-    var left=sequence.slice(0,lastIndex)
-    var right=sequence.slice(lastIndex,sequence.length-1)
-    for(var i=0;i<right.length;i++){
-        if(right[i]<right[0]){
-            return false
+        obj[item]++
+
+        if(obj[item]>arr.length/2){
+            res=item
         }
-    }
-    return VerifySquenceOfBST(left)&&VerifySquenceOfBST(right)
+    })
+
+    return res
 }
 
-
-    
-var arr=[1,3,2]
-var res=VerifySquenceOfBST(arr)
+var test=[1,2,3,2,2,2,5,2,4]
+var res=MoreThanHalfNum_Solution(test)
 console.log(res)

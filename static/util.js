@@ -3,11 +3,21 @@ function isEven(n) {
     return n % 2 === 0 ? true : false
 }
 
-//数组交换位置
-function swapPos(arr, left, right) {
-    var temp = arr[left]
-    arr[left] = arr[right]
-    arr[right] = temp
+//数组或字符串交换位置
+//字符串 返回新字符串
+//数组  在原始数组上修改
+function swapPos(arrOrStr, i, j) {
+    var arrFlag = true
+
+    if (typeof(arrOrStr) === "string") {
+        var arrOrStr = arrOrStr.split("")
+        arrFlag = false
+    }
+    var temp = arrOrStr[i]
+    arrOrStr[i] = arrOrStr[j]
+    arrOrStr[j] = temp
+    if (!arrFlag) return arrOrStr.join('')
+    return arrOrStr
 }
 
 //将数组转化为链表
@@ -48,4 +58,13 @@ function getLimitInArray(arr, left, right) {
         min: min,
         max: max
     }
+}
+
+
+
+export default var util={
+    isEven:isEven,
+    swapPos:swapPos,
+    arrayToListNode:arrayToListNode,
+    getLimitInArray:getLimitInArray
 }
