@@ -1,23 +1,20 @@
-function MoreThanHalfNum_Solution(arr)
-{
-    var obj={}
-    var res=0
-    arr.forEach(function(item,index){
 
-        if(obj[item]){
-        }else{
-            obj[item]=0
-        }
-        obj[item]++
-
-        if(obj[item]>arr.length/2){
-            res=item
-        }
-    })
-
-    return res
+//生成一个数组
+//指定长度，每个数范围[left,right],是否排序
+function generatorArray(len,left,right,sortFlag){
+    var res=[]
+    for(var i=0;i<len;i++){
+        res.push(getRandom(left,right))
+    }
+    return sortFlag?res.sort():res
 }
 
-var test=[1,2,3,2,2,2,5,2,4]
-var res=MoreThanHalfNum_Solution(test)
-console.log(res)
+//[left,right]
+function getRandom(left,right){
+    var temp=(right-left)*Math.random()+left
+    return Math.ceil(temp)
+}
+
+
+var test=generatorArray(10,2,8,true)
+console.log(test)

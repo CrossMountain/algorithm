@@ -3,6 +3,22 @@ function isEven(n) {
     return n % 2 === 0 ? true : false
 }
 
+//生成一个数组
+//指定长度，每个数范围[left,right],是否排序
+function generatorArray(len,left,right,sortFlag){
+    var res=[]
+    for(var i=0;i<len;i++){
+        res.push(getRandom(left,right))
+    }
+    return sortFlag?res.sort():res
+}
+
+//[left,right]
+function getRandom(left,right){
+    var temp=(right-left)*Math.random()+left
+    return Math.ceil(temp)
+}
+
 //数组或字符串交换位置
 //字符串 返回新字符串
 //数组  在原始数组上修改
@@ -32,8 +48,8 @@ function arrayToListNode(arr){
     return head
 }
 
-//数组中的极值与位置 
-//左开右闭  [left,right)
+//数组[left,right)中的极值与位置 
+
 function getLimitInArray(arr, left, right) {
     if (left >= right) return null
     var min = {
@@ -58,6 +74,25 @@ function getLimitInArray(arr, left, right) {
         min: min,
         max: max
     }
+}
+//获取二进制中最高位或最低位1所构成的十进制数
+function findBitOne(num,type){
+    var index=0
+    var temp=num
+    if(type==='high'){
+        while(temp!==1){
+            temp=temp>>1
+            index++
+        }
+    }else if(type==='low'){
+        while((temp&1)===0){  //最后1位为0
+            temp=temp>>1
+            index++
+        }
+    }else{
+        throw("type只能为high和low")
+    }
+    return Math.pow(2,index)
 }
 
 
