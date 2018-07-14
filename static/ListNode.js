@@ -3,6 +3,17 @@ function ListNode(x) {
     this.val = x;
     this.next = null;
 }
+//将数组转化为链表
+function arrayToListNode(arr) {
+    var head = null
+    for (var i = arr.length - 1; i >= 0; i--) {
+        var temp = head
+        head = {}
+        head.val = arr[i]
+        head.next = temp
+    }
+    return head
+}
 //输入一个链表，输出该链表中倒数第k个结点。
 function FindKthToTail(head, k) {
     if (!head) return null

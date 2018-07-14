@@ -1,3 +1,18 @@
+//生成一个数组
+//指定长度，每个数范围[left,right],是否排序
+function generatorArray(len, left, right, sortFlag) {
+    var res = []
+    for (var i = 0; i < len; i++) {
+        res.push(getRandom(left, right))
+    }
+    //[left,right]
+    function getRandom(left, right) {
+        var temp = (right - left) * Math.random() + left
+        return Math.ceil(temp)
+    }
+    return sortFlag ? res.sort() : res
+}
+
 //数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
 function MoreThanHalfNum_Solution(arr) {
     var current

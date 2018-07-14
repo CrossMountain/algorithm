@@ -3,15 +3,6 @@ function isEven(n) {
     return n % 2 === 0 ? true : false
 }
 
-//生成一个数组
-//指定长度，每个数范围[left,right],是否排序
-function generatorArray(len, left, right, sortFlag) {
-    var res = []
-    for (var i = 0; i < len; i++) {
-        res.push(getRandom(left, right))
-    }
-    return sortFlag ? res.sort() : res
-}
 //[left,right]
 function getRandom(left, right) {
     var temp = (right - left) * Math.random() + left
@@ -35,17 +26,7 @@ function swapPos(arrOrStr, i, j) {
     return arrOrStr
 }
 
-//将数组转化为链表
-function arrayToListNode(arr) {
-    var head = null
-    for (var i = arr.length - 1; i >= 0; i--) {
-        var temp = head
-        head = {}
-        head.val = arr[i]
-        head.next = temp
-    }
-    return head
-}
+
 
 //数组[left,right)中的极值与位置 
 function getLimitInArray(arr, left, right) {
@@ -75,35 +56,42 @@ function getLimitInArray(arr, left, right) {
         max: max
     }
 }
-//获取二进制中最高位或最低位1所构成的十进制数
-function findBitOne(num, type) {
-    var index = 0
-    var temp = num
-    if (type === 'high') {
-        while (temp !== 1) {
-            temp = temp >> 1
-            index++
-        }
-    } else if (type === 'low') {
-        while ((temp & 1) === 0) { //最后1位为0
-            temp = temp >> 1
-            index++
-        }
-    } else {
-        throw ("type只能为high和low")
-    }
-    return Math.pow(2, index)
-}
+
 
 //输入数组
 //输出反转后的数组
-function reverseArray(arr){
-    if(!arr||arr.length===0) return []
-    var res=[]
-    for(var i=arr.length-1;i>=0;i--){
+function reverseArray(arr) {
+    if (!arr || arr.length === 0) return []
+    var res = []
+    for (var i = arr.length - 1; i >= 0; i--) {
         res.push(arr[i])
     }
     return res
 }
 
 
+//获取 num 在二维数组中 占第几行和第几列,从0计数
+//超过数组范围则返回[]
+function getRowCol(num, rows, cols) {
+    var j = num & cols
+    var i = (num - j) / cols
+    if (i < rows && i >= 0) {
+        return [i, j]
+    } else {
+        return []
+    }
+}
+
+//获取 正整数 的数位和
+//45=>4+5,return 9
+function getDigitalSum(num){
+    var temp=Math.abs(num).toFixed(0)
+    var res=0
+
+    while(temp){
+        var last=temp%10
+        res+=last
+        temp=(temp-last)/10
+    }
+    return res
+}
