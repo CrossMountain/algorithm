@@ -5,17 +5,16 @@ function isEven(n) {
 
 //生成一个数组
 //指定长度，每个数范围[left,right],是否排序
-function generatorArray(len,left,right,sortFlag){
-    var res=[]
-    for(var i=0;i<len;i++){
-        res.push(getRandom(left,right))
+function generatorArray(len, left, right, sortFlag) {
+    var res = []
+    for (var i = 0; i < len; i++) {
+        res.push(getRandom(left, right))
     }
-    return sortFlag?res.sort():res
+    return sortFlag ? res.sort() : res
 }
-
 //[left,right]
-function getRandom(left,right){
-    var temp=(right-left)*Math.random()+left
+function getRandom(left, right) {
+    var temp = (right - left) * Math.random() + left
     return Math.ceil(temp)
 }
 
@@ -37,20 +36,21 @@ function swapPos(arrOrStr, i, j) {
 }
 
 //将数组转化为链表
-function arrayToListNode(arr){   
-    var head=null
-    for(var i=arr.length-1;i>=0;i--){
-        var temp=head
-        head={}
-        head.val=arr[i]
-        head.next=temp
+function arrayToListNode(arr) {
+    var head = null
+    for (var i = arr.length - 1; i >= 0; i--) {
+        var temp = head
+        head = {}
+        head.val = arr[i]
+        head.next = temp
     }
     return head
 }
 
 //数组[left,right)中的极值与位置 
-
 function getLimitInArray(arr, left, right) {
+    left = left || 0
+    right = right || arr.length
     if (left >= right) return null
     var min = {
         val: arr[0],
@@ -67,7 +67,7 @@ function getLimitInArray(arr, left, right) {
         }
         if (arr[i] < min.val) {
             min.val = arr[i]
-            max.index = i
+            min.index = i
         }
     }
     return {
@@ -76,30 +76,34 @@ function getLimitInArray(arr, left, right) {
     }
 }
 //获取二进制中最高位或最低位1所构成的十进制数
-function findBitOne(num,type){
-    var index=0
-    var temp=num
-    if(type==='high'){
-        while(temp!==1){
-            temp=temp>>1
+function findBitOne(num, type) {
+    var index = 0
+    var temp = num
+    if (type === 'high') {
+        while (temp !== 1) {
+            temp = temp >> 1
             index++
         }
-    }else if(type==='low'){
-        while((temp&1)===0){  //最后1位为0
-            temp=temp>>1
+    } else if (type === 'low') {
+        while ((temp & 1) === 0) { //最后1位为0
+            temp = temp >> 1
             index++
         }
-    }else{
-        throw("type只能为high和low")
+    } else {
+        throw ("type只能为high和low")
     }
-    return Math.pow(2,index)
+    return Math.pow(2, index)
+}
+
+//输入数组
+//输出反转后的数组
+function reverseArray(arr){
+    if(!arr||arr.length===0) return []
+    var res=[]
+    for(var i=arr.length-1;i>=0;i--){
+        res.push(arr[i])
+    }
+    return res
 }
 
 
-
-export default var util={
-    isEven:isEven,
-    swapPos:swapPos,
-    arrayToListNode:arrayToListNode,
-    getLimitInArray:getLimitInArray
-}

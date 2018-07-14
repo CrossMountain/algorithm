@@ -3,7 +3,12 @@
     this.left = null;
     this.right = null;
 } 
-
+//中序遍历
+function inOrderTraversal(root) {
+    if (!root) return []
+    if (!root.left && !root.right) return [root.val]
+    return inOrderTraversal(root.left).concat([root.val]).concat(inOrderTraversal(root.right))
+}
 /** 不得有重复元素
  * 由前序和中序序列，构建二叉树 (递归版本)
  * @param  {Array} pre 前序遍历
@@ -11,11 +16,11 @@
  * @return {Object}     [根节点]
  */
 //层序遍历{1,2,3,4,5,6,7}
-//var arr1 = [1, 2, 4, 5, 3, 6, 7]
-//var arr2 = [4, 2, 5, 1, 6, 3, 7]  //构成向左往右数的1到7
+//var pre = [1, 2, 4, 5, 3, 6, 7]
+//var vin = [4, 2, 5, 1, 6, 3, 7]  //构成向左往右数的1到7
 //二叉搜索树:
-//var arr1=[4,2,1,3,6,5,7]
-//var arr2=[1,2,3,4,5,6,7]
+//var pre=[4,2,1,3,6,5,7]
+//var vin=[1,2,3,4,5,6,7]
 function reConstructBinaryTree(pre, vin) {
     if (pre.length === 0 || vin.length === 0) return null
 
