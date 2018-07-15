@@ -24,3 +24,26 @@ function minNumberInRotateArray(rotateArray) {
         return rotateArray[right]
     }
 }
+
+
+function binarySearch(sortedArray,value){
+    var first=0
+    var last=sortedArray.length
+    var mid=Math.floor((first+last)/2)
+
+    while(first<last){
+        var cur=sortedArray[mid]
+
+        if(cur<value){
+            first=mid+1            
+            mid=Math.floor((first+last)/2)
+        }else if(cur>value){
+            last=mid
+            mid=Math.floor((first+last)/2)
+        }else{
+            break
+        }
+    }
+    if(sortedArray[mid]===value) return mid
+    return -1
+}

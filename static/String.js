@@ -36,3 +36,30 @@ function isNeedSwap(arr, left, right) {
     }
     return flag
 }
+
+//在一个字符串(0<=字符串长度<=10000，全部由字母组成)中找到第一个只出现一次的字符,
+//并返回它的位置, 如果没有则返回 -1.
+function FirstNotRepeatingChar(str) {
+    var obj = {}
+    var order = []
+
+    for (var i = 0; i < str.length; i++) {
+        var char=str[i]
+        if (!obj[char]) { //不存在,即第一次出现
+            obj[char] = 1 //次数为1
+            order.push(char)
+        } else if (obj[char] !== -1) { //再次出现
+            deleteValueInArray(order, char)
+            obj[char] = -1
+        } else { //obj[char]===-1   //出现多次
+
+        }
+    }
+    var first=order[0]
+    return str.indexOf(first)
+}
+
+function deleteValueInArray(arr, value) {
+    var index = arr.indexOf(value)
+    arr.splice(index, 1)
+}

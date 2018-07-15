@@ -10,7 +10,9 @@ function generatorArray(len, left, right, sortFlag) {
         var temp = (right - left) * Math.random() + left
         return Math.ceil(temp)
     }
-    return sortFlag ? res.sort() : res
+    return sortFlag ? res.sort(function(last,cur){
+        return last-cur
+    }) : res
 }
 
 //数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
