@@ -25,25 +25,23 @@ function minNumberInRotateArray(rotateArray) {
     }
 }
 
+//二分查找,返回第一个索引
+function binarySearch(sortedArray, value) {
+    var first = 0
+    var last = sortedArray.length
+    var mid = Math.floor((first + last) / 2)
 
-function binarySearch(sortedArray,value){
-    var first=0
-    var last=sortedArray.length
-    var mid=Math.floor((first+last)/2)
+    while (first < last) {
+        var cur = sortedArray[mid]
 
-    while(first<last){
-        var cur=sortedArray[mid]
-
-        if(cur<value){
-            first=mid+1            
-            mid=Math.floor((first+last)/2)
-        }else if(cur>value){
-            last=mid
-            mid=Math.floor((first+last)/2)
-        }else{
-            break
+        if (cur < value) {
+            first = mid + 1
+            mid = Math.floor((first + last) / 2)
+        } else if (cur >= value) {
+            last = mid
+            mid = Math.floor((first + last) / 2)
         }
     }
-    if(sortedArray[mid]===value) return mid
+    if (sortedArray[mid] === value) return mid
     return -1
 }
