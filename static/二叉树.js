@@ -129,3 +129,48 @@
      rootNode.right = right
      return left !== null ? left : rootNode
  }
+
+ //输入一棵二叉树，求该树的深度
+function TreeDepth(pRoot) {
+    if (!pRoot) return 0
+
+    var queue = []
+    var nextQueue = []
+    var depth = 0
+
+    queue.push(pRoot)
+
+    while (queue.length) {
+        var temp = queue.shift()
+        if (temp.left) nextQueue.push(temp.left)
+        if (temp.right) nextQueue.push(temp.right)
+
+        if (queue.length === 0) {
+            queue = nextQueue
+            nextQueue = []
+            depth++
+        }
+    }
+    return depth
+}
+
+
+//是不是平衡二叉树
+function IsBalanced_Solution(pRoot) {
+    // 非平衡二叉树的深度为-1
+    function getDepth(root) {     
+        if (root === null) return 0;     
+        var left = getDepth(root.left); //遍历直至叶结点 
+        if (left === -1) return -1;     
+        var right = getDepth(root.right);     
+        if (right === -1) return -1;   
+
+        if (Math.abs(left - right) > 1)   {  //从下往上返回
+            return -1   //不平衡则返回1
+        } else {
+            return 1+Math.max(left,right)
+        }
+    }
+
+    return getDepth(pRoot) !== -1
+}

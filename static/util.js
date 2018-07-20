@@ -57,19 +57,6 @@ function getLimitInArray(arr, left, right) {
     }
 }
 
-
-//输入数组
-//输出反转后的数组
-function reverseArray(arr) {
-    if (!arr || arr.length === 0) return []
-    var res = []
-    for (var i = arr.length - 1; i >= 0; i--) {
-        res.push(arr[i])
-    }
-    return res
-}
-
-
 //获取 num 在二维数组中 占第几行和第几列,从0计数
 //超过数组范围则返回[]
 function getRowCol(num, rows, cols) {
