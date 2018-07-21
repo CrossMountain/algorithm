@@ -25,7 +25,7 @@ function minNumberInRotateArray(rotateArray) {
     }
 }
 
-//二分查找,返回第一个索引
+//二分查找,返回第一个索引,没有则返回-1
 function binarySearch(sortedArray, value) {
     var first = 0
     var last = sortedArray.length
