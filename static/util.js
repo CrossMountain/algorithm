@@ -34,12 +34,12 @@ function getLimitInArray(arr, left, right) {
     right = right || arr.length
     if (left >= right) return null
     var min = {
-        val: arr[0],
-        index: 0
+        val: arr[left],
+        index: left
     }
     var max = {
-        val: arr[0],
-        index: 0
+        val: arr[left],
+        index: left
     }
     for (var i = left; i < right; i++) {
         if (arr[i] > max.val) {
