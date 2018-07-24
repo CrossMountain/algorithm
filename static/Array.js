@@ -10,8 +10,8 @@ function generatorArray(len, left, right, sortFlag) {
         var temp = (right - left) * Math.random() + left
         return Math.ceil(temp)
     }
-    return sortFlag ? res.sort(function(last,cur){
-        return last-cur
+    return sortFlag ? res.sort(function(last, cur) {
+        return last - cur
     }) : res
 }
 
@@ -19,7 +19,7 @@ function generatorArray(len, left, right, sortFlag) {
 function MoreThanHalfNum_Solution(arr) {
     var current
     var times = 0
-//目标数 超过数组长度的一半，对数组同时去掉两个不同的数字，到最后剩下的一个数就是该数字
+    //目标数 超过数组长度的一半，对数组同时去掉两个不同的数字，到最后剩下的一个数就是该数字
     arr.forEach(function(item, index) {
         if (times === 0) { //不相同的数成对出现
             current = item
@@ -45,7 +45,7 @@ function FindGreatestSumOfSubArray(arr) {
     //maxIndexI（i）：以array[i]为末尾元素的子数组的和的最大值，子数组的元素的相对位置不变
     //maxIndexI（i）=max（F（i-1）+array[i] ， array[i]）
     var maxIndexI = arr[0]
-    var res = maxIndexI  //结果res=max（res，maxIndexI（i））
+    var res = maxIndexI //结果res=max（res，maxIndexI（i））
     for (var i = 1; i < arr.length; i++) {
         var nextF = Math.max(arr[i], maxIndexI + arr[i])
         res = Math.max(res, nextF)
@@ -63,7 +63,7 @@ function FindNumbersWithSum(array, sum) {
     var left = 0 //最小数
     var right = array.length - 1 //最大数
 
-    var res=[]
+    var res = []
     while (left < right) {
         if (array[left] + array[right] === sum) {
             res.push([array[left], array[right]])
@@ -79,32 +79,31 @@ function FindNumbersWithSum(array, sum) {
 
 //5个数,范围[0-13],可重复,0代表任意数
 //问是否满足顺子
-function IsContinuous(numbers)
-{
-    if(!numbers||numbers.length===0) return false
-    var arr=numbers
-    arr.sort(function(a,b){  //排序
-        return a-b
+function IsContinuous(numbers) {
+    if (!numbers || numbers.length === 0) return false
+    var arr = numbers
+    arr.sort(function(a, b) { //排序
+        return a - b
     })
-    var numberOfZero=0  //0的个数
+    var numberOfZero = 0 //0的个数
 
-    var distance=0  //间隔
+    var distance = 0 //间隔
 
-    for(var i=0;i<arr.length;i++){
-        if(arr[i]===0){
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === 0) {
             numberOfZero++
-        }else{
-            if(arr[i-1]===0){
+        } else {
+            if (arr[i - 1] === 0) {
 
-            }else if(i!==0){
-                var gain=arr[i]-arr[i-1]
-                if(gain===0) return false //出现对子
-                distance+=(gain-1)
+            } else if (i !== 0) {
+                var gain = arr[i] - arr[i - 1]
+                if (gain === 0) return false //出现对子
+                distance += (gain - 1)
             }
         }
     }
 
-    if(numberOfZero>=distance) return true
+    if (numberOfZero >= distance) return true
     return false
 }
 
@@ -116,11 +115,11 @@ function duplicate(numbers, arr) {
 
     var flag = false
     for (var i = 0; i < len; i++) {
-        var real = numbers[i] % len  //原来的数值
-        numbers[real]+=len  //存储起来
-        if(numbers[real]>=2*len){  //有过两次存储
-            flag=true
-            arr[0]=real
+        var real = numbers[i] % len //原来的数值
+        numbers[real] += len //存储起来
+        if (numbers[real] >= 2 * len) { //有过两次存储
+            flag = true
+            arr[0] = real
             break
         }
     }
@@ -132,15 +131,33 @@ function duplicate(numbers, arr) {
 function reOrderArray(array) {
     if (!array || array.length === 0) return []
 
-    var odd=[]
-    var even=[]
+    var odd = []
+    var even = []
 
-    array.forEach(function(item,index){
-        if(isEven(item)){
+    array.forEach(function(item, index) {
+        if (isEven(item)) {
             even.push(item)
-        }else{
+        } else {
             odd.push(item)
         }
     })
     return odd.concat(even)
+}
+
+//给定一个数组A,请构建一个数组,
+//其中B中的元素B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]。
+function multiply(array) {
+    var res = []
+    res[0] = 1
+    //计算下三角连乘
+    for (var i = 1; i < array.length; i++) {
+        res[i] = res[i - 1] * array[i - 1]
+    }
+    //计算上三角连乘
+    var next = 1
+    for (var i = array.length - 2; i >= 0; i--) {
+        next *= array[i + 1]
+        res[i] *= next
+    }
+    return res
 }
