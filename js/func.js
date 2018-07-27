@@ -51,5 +51,3 @@ for (var i = 0; i < list.length; i++) {
     console.log(start1, end1, start2, end2)
 }
 
-console.log(1)
-console.log(2)
