@@ -81,3 +81,25 @@ function parenthesisPairing(str) {
         return 1;
     }
 }
+
+
+//是否为合法括号序列
+function isLegalBracket(str) {
+    if (!str || str.length === 0) return false
+    var stack = []
+    var res = true
+
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] === "(") {
+            stack.push("(")
+        } else {
+            if (stack.length !== 0) {
+                stack.pop()
+            } else {
+                res = false
+                break
+            }
+        }
+    }
+    return res
+}

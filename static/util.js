@@ -82,3 +82,10 @@ function getDigitalSum(num){
     }
     return res
 }
+
+//数组去除空的头与尾
+function removeNullHeadTail(arr) {
+    if (!arr || arr.length === 0) return
+    if (!arr[0]) arr.shift()
+    if (!arr[arr.length - 1]) arr.pop()
+}
