@@ -79,7 +79,7 @@ function FindNumbersWithSum(array, sum) {
 
 //5个数,范围[0-13],可重复,0代表任意数
 //问是否满足顺子
-function IsContinuous(numbers) {
+function isContinuous(numbers) {
     if (!numbers || numbers.length === 0) return false
     var arr = numbers
     arr.sort(function(a, b) { //排序

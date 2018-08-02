@@ -3,10 +3,14 @@ function isEven(n) {
     return n % 2 === 0 ? true : false
 }
 
-//[left,right]
+//x属于 [start,end)
+function belongToSection(x, start, end) {
+    return x >= start && x < end
+}
+//[left,right)
 function getRandom(left, right) {
     var temp = (right - left) * Math.random() + left
-    return Math.ceil(temp)
+    return Math.floor(temp)
 }
 
 //数组或字符串交换位置
@@ -71,14 +75,14 @@ function getRowCol(num, rows, cols) {
 
 //获取 正整数 的数位和
 //45=>4+5,return 9
-function getDigitalSum(num){
-    var temp=Math.abs(num).toFixed(0)
-    var res=0
+function getDigitalSum(num) {
+    var temp = Math.abs(num).toFixed(0)
+    var res = 0
 
-    while(temp){
-        var last=temp%10
-        res+=last
-        temp=(temp-last)/10
+    while (temp) {
+        var last = temp % 10
+        res += last
+        temp = (temp - last) / 10
     }
     return res
 }
@@ -89,3 +93,4 @@ function removeNullHeadTail(arr) {
     if (!arr[0]) arr.shift()
     if (!arr[arr.length - 1]) arr.pop()
 }
+

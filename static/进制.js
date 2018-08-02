@@ -1,22 +1,23 @@
-//获取进制中最高位或最低位有效数字所构成的十进制数
+//获取指定进制中最高位或最低位有效数字的详情
 function findBitOne(num, type, dec) {
-    var index = 0
-    var temp = num
+
+    var str = num.toString(dec)
+    var weight
+
     if (type === 'high') {
-        while (temp >= dec) {
-            temp = Math.floor(temp / dec)
-            index++
-        }
+        value = str[0]
+        weight = str.length - 1
     } else if (type === 'low') {
-        while ((temp & 1) === 0) { //最后1位为0
-            temp = Math.floor(temp / dec)
-            index++
-        }
-        temp=temp%dec
+        value = str[str.length - 1]
+        weight = 0
     } else {
         throw ("type只能为high和low")
     }
-    return temp*Math.pow(dec, index)
+    return {
+        value: parseInt(value),
+        dec: dec,
+        weight: weight,
+    }
 }
 
 //输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。

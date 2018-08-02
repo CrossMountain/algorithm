@@ -21,3 +21,17 @@ function arrGCD(arr) {
         return GCD(last, cur)
     })
 }
+
+//是否是质数
+function isPrimeNumber(num) {
+    //自己保证传入的是正整数
+    if (num === 2 || num === 3) return true
+    if (num % 6 !== 1 && num % 6 !== 5) return false
+    var temp = Math.floor(Math.sqrt(num))
+    for (var i = 5; i <= temp; i = i + 2) {
+        if (num % i === 0) {
+            return false
+        }
+    }
+    return true
+}
