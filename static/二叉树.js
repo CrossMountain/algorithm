@@ -198,3 +198,18 @@ function findPathHelper(root, num, path, all) {
     helper(root.left, num - root.val, path.slice(), all)
     helper(root.right, num - root.val, path.slice(), all)
 }
+
+
+//字典树，以pre为结点的子树，总共有多少结点
+function getCntOfPre(pre, n) {
+    var cnt = 1;
+    var p = 10;
+    for (; pre * p <= n; p *= 10) {
+        if (pre * p - 1 + p < n)
+            cnt += p;
+        else
+            cnt += n - pre * p + 1;
+        //          cnt += Math.min(n, pre * p - 1 + p) - pre * p + 1;
+    }
+    return cnt;
+}

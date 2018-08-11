@@ -2,7 +2,13 @@
 function isEven(n) {
     return n % 2 === 0 ? true : false
 }
-
+//是否为非负整数 
+function isNotNegativeInteger(num) {
+    if (typeof(num) !== "number") return false
+    if (num < 0) return false
+    if (num % 1 !== 0) return false
+    return true
+}
 //x属于 [start,end)
 function belongToSection(x, start, end) {
     return x >= start && x < end
@@ -93,4 +99,3 @@ function removeNullHeadTail(arr) {
     if (!arr[0]) arr.shift()
     if (!arr[arr.length - 1]) arr.pop()
 }
-
