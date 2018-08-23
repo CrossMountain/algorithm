@@ -213,3 +213,42 @@ function getCntOfPre(pre, n) {
     }
     return cnt;
 }
+
+
+//之字形打印二叉树
+function Print(pRoot) {
+    if (!pRoot) return []
+
+    var isLeftFirst = true
+
+    var res = []
+    var layerValue = []
+
+    var curLayer = []
+    var nextLayer = []
+
+    curLayer.push(pRoot)
+    while (curLayer.length) {
+        var node = curLayer.pop()
+
+        layerValue.push(node.val)
+
+        if (isLeftFirst) {
+            if (node.left) nextLayer.push(node.left)
+            if (node.right) nextLayer.push(node.right)
+        } else {
+            if (node.right) nextLayer.push(node.right)
+            if (node.left) nextLayer.push(node.left)
+        }
+
+        if (curLayer.length === 0) {
+            curLayer = nextLayer
+            nextLayer = []
+            res.push(layerValue)
+            layerValue = []
+            isLeftFirst = !isLeftFirst
+        }
+
+    }
+    return res
+}

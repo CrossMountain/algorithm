@@ -1,21 +1,3 @@
-function splitParse(str, separator) {
-    var arr = _split(str, separator)
-    return _parse(arr)
-}
-
-function _split(str, separator) {
-    separator = separator || " "
-    return str.split(separator)
-}
-
-function _parse(arr) {
-    for (var i = 0; i < arr.length; i++) {
-        arr[i] = parseInt(arr[i])
-    }
-    return arr
-}
-
-
 //判断在一个矩阵中是否存在一条包含某字符串所有字符的路径
 //每一步可以在矩阵中向左，向右，向上，向下移动一个格子
 //格子不能被重复进入
@@ -53,9 +35,3 @@ function hasPathHelper(matrix, rows, cols, i, j, path, k, flag) {
     flag[index] = 0;
     return false;
 }
-
-
-
-var str = "abcesfcsadee"
-var out = hasPath(str, 3, 4, "abc")
-console.log(out)

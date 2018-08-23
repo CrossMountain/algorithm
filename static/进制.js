@@ -3,7 +3,7 @@ function findBitOne(num, type, dec) {
 
     var str = num.toString(dec)
     var weight
-
+    dec = dec || 10
     if (type === 'high') {
         value = str[0]
         weight = str.length - 1

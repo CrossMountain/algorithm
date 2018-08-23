@@ -65,3 +65,15 @@ function merge(arr, start, mid, end) {
 }
 
 
+//输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个
+//若ab > ba 则 a > b，
+//若ab < ba 则 a < b，
+//若ab = ba 则 a = b；
+function PrintMinNumber(numbers) {
+    numbers.sort(function(n1, n2) {
+        var temp1 = parseInt(n1.toString() + n2.toString())
+        var temp2 = parseInt(n2.toString() + n1.toString())
+        return temp1 > temp2 ? 1 : -1
+    })
+    return numbers.join("")
+}
