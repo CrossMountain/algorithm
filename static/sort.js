@@ -77,3 +77,6 @@ function PrintMinNumber(numbers) {
     })
     return numbers.join("")
 }
+
+//输入一个数组,求出这个数组中的逆序对的总数
+//核心：归并排序并在合并时，计算逆序对

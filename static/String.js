@@ -59,7 +59,28 @@ function FirstNotRepeatingChar(str) {
     return str.indexOf(first)
 }
 
-function deleteValueInArray(arr, value) {
-    var index = arr.indexOf(value)
-    arr.splice(index, 1)
+
+//检查是否为双生字符：
+// 一个字符首尾相连 ，从某一个位置切断，沿顺/逆时针拼接
+// 构成的是否为双生字符 
+function checkTwinString(stringA, stringB) {
+    //两字符串存在空的情况
+    if (stringA == null || stringB == null) {
+        return false;
+    }
+
+    if (stringA.length != stringB.length) {
+        return false;
+    }
+
+    var temp1 = stringA + stringA
+    var reverseStringA = stringA.split("").reverse().join("")
+    var temp2 = reverseStringA + reverseStringA
+
+    var reg = new RegExp(stringB)
+    if (reg.test(temp1) || reg.test(temp2)) {
+        return true
+    } else {
+        return false
+    }
 }
