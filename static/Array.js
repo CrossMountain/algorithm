@@ -183,3 +183,28 @@ function lengthOfLIS(nums) {
     }
     return size;
 }
+
+//leetcode 11
+//Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai)
+// 两条线之间形成一个桶，能装多少水？
+var maxArea = function(height) {
+    var left = 0
+    var right = height.length - 1
+
+    var outN = 0
+    while (left < right) {
+        outN = Math.max(outN, getArea(height, left, right))
+
+        if (height[left] < height[right]) {
+            left++
+        } else {
+            right--
+        }
+    }
+    return outN
+
+    function getArea(arr, i, j) {
+        var out = Math.min(arr[i], arr[j]) * (j - i)
+        return Math.abs(out)
+    }
+};

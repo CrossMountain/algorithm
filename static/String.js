@@ -44,7 +44,7 @@ function FirstNotRepeatingChar(str) {
     var order = []
 
     for (var i = 0; i < str.length; i++) {
-        var char=str[i]
+        var char = str[i]
         if (!obj[char]) { //不存在,即第一次出现
             obj[char] = 1 //次数为1
             order.push(char)
@@ -55,7 +55,7 @@ function FirstNotRepeatingChar(str) {
 
         }
     }
-    var first=order[0]
+    var first = order[0]
     return str.indexOf(first)
 }
 
@@ -83,4 +83,33 @@ function checkTwinString(stringA, stringB) {
     } else {
         return false
     }
+}
+
+//字符串中最长不重复连续子序列
+//leetcode 3
+var lengthOfLongestSubstring = function(s) {
+    if (!s) return 0
+
+    var outN = 0
+    var map = {}   //hash保存当前最长子序列的所有字符
+
+    var leftIndex = 0
+
+    for (var i = 0; i < s.length; i++) {
+        var ch = s[i]
+        if (map[ch]) {
+            map[ch]++
+        } else {
+            map[ch] = 1
+        }
+
+        while (map[ch] > 1) {   //滑动窗口
+            map[s[leftIndex]]--
+                leftIndex++
+        }
+        outN = Math.max(i - leftIndex + 1, outN)
+    }
+
+
+    return outN
 }
