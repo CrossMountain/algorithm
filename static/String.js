@@ -15,15 +15,13 @@ function PermutationHelper(str, i, list) {
     } else {
         for (var j = i; j < str.length; j++) {
             if (isNeedSwap(str, i, j)) {
-                str = util.swapPos(str, i, j) //固定第i位后,
+                str = swapPos(str, i, j) //固定第i位后,
                 PermutationHelper(str, i + 1, list) //再去交换[i+1,)之后
-                str = util.swapPos(str, i, j) //还原
+                str = swapPos(str, i, j) //还原
             }
-
         }
     }
 }
-
 //没有重复,返回TRUE
 //[left,right-1]中,是否有与arr[right]相同的
 function isNeedSwap(arr, left, right) {
@@ -91,7 +89,7 @@ var lengthOfLongestSubstring = function(s) {
     if (!s) return 0
 
     var outN = 0
-    var map = {}   //hash保存当前最长子序列的所有字符
+    var map = {} //hash保存当前最长子序列的所有字符
 
     var leftIndex = 0
 
@@ -103,7 +101,7 @@ var lengthOfLongestSubstring = function(s) {
             map[ch] = 1
         }
 
-        while (map[ch] > 1) {   //滑动窗口
+        while (map[ch] > 1) { //滑动窗口
             map[s[leftIndex]]--
                 leftIndex++
         }

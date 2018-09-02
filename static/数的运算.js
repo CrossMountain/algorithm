@@ -42,3 +42,28 @@ function isNotNegativeInteger(num) {
     if (num % 1 !== 0) return false
     return true
 }
+
+//大数相加
+function addBigNumber(a, b) {
+    var res = '',
+        upFlag = 0;
+    a = a.toString().split('');
+    b = b.toString().split('');
+    while (a.length || b.length || upFlag) {
+        var temp1 = a.pop()
+        var temp2 = b.pop()
+        if (temp1) {
+            upFlag += parseInt(temp1)
+        }
+        if (temp2) {
+            upFlag += parseInt(temp2)
+        }
+        res = upFlag % 10 + res;
+        if (upFlag > 9) {
+            upFlag = 1
+        } else {
+            upFlag = 0
+        }
+    }
+    return res.replace(/^0+/, '');
+}

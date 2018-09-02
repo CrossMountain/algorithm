@@ -4,6 +4,27 @@ function TreeNode(x) {
     this.right = null;
 }
 
+function nonRecursion(root) {
+    if (!root) return []
+
+    var stack = []
+
+    var outA = []
+    while (root || stack.length !== 0) {
+        stack.push(root)
+        // outA.push(root.val)   前序
+        root = root.left
+
+        while (!root && stack.length !== 0) {
+            var next = stack.pop()
+            // outA.push(next.val)  中序
+            root = next.right
+        }
+
+    }
+
+    return outA
+}
 //前序遍历
 function preOrderTraversal(root) {
     if (!root) return []
