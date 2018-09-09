@@ -4,6 +4,27 @@ function TreeNode(x) {
     this.right = null;
 }
 
+function nonRecursion(root) {
+    if (!root) return []
+
+    var stack = []
+
+    var outA = []
+    while (root || stack.length !== 0) {
+        stack.push(root)
+        // outA.push(root.val)   前序
+        root = root.left
+
+        while (!root && stack.length !== 0) {
+            var next = stack.pop()
+            // outA.push(next.val)  中序
+            root = next.right
+        }
+
+    }
+
+    return outA
+}
 //前序遍历
 function preOrderTraversal(root) {
     if (!root) return []
@@ -197,4 +218,58 @@ function findPathHelper(root, num, path, all) {
     //必须复制数组的拷贝
     helper(root.left, num - root.val, path.slice(), all)
     helper(root.right, num - root.val, path.slice(), all)
+}
+
+
+//字典树，以pre为结点的子树，总共有多少结点
+function getCntOfPre(pre, n) {
+    var cnt = 1;
+    var p = 10;
+    for (; pre * p <= n; p *= 10) {
+        if (pre * p - 1 + p < n)
+            cnt += p;
+        else
+            cnt += n - pre * p + 1;
+        //          cnt += Math.min(n, pre * p - 1 + p) - pre * p + 1;
+    }
+    return cnt;
+}
+
+
+//之字形打印二叉树
+function Print(pRoot) {
+    if (!pRoot) return []
+
+    var isLeftFirst = true
+
+    var res = []
+    var layerValue = []
+
+    var curLayer = []
+    var nextLayer = []
+
+    curLayer.push(pRoot)
+    while (curLayer.length) {
+        var node = curLayer.pop()
+
+        layerValue.push(node.val)
+
+        if (isLeftFirst) {
+            if (node.left) nextLayer.push(node.left)
+            if (node.right) nextLayer.push(node.right)
+        } else {
+            if (node.right) nextLayer.push(node.right)
+            if (node.left) nextLayer.push(node.left)
+        }
+
+        if (curLayer.length === 0) {
+            curLayer = nextLayer
+            nextLayer = []
+            res.push(layerValue)
+            layerValue = []
+            isLeftFirst = !isLeftFirst
+        }
+
+    }
+    return res
 }

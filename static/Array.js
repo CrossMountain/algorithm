@@ -161,3 +161,50 @@ function multiply(array) {
     }
     return res
 }
+
+
+//最长不连续 递增子序列  （nlogn）
+function lengthOfLIS(nums) {
+    var tails = new Array(nums.length);
+    var size = 0;
+    for (var x of nums) {
+        var i = 0,
+            j = size;
+        while (i != j) {
+            var m = (i + j) / 2;
+            if (tails[m] <= x) {
+                i = m + 1;
+            } else {
+                j = m;
+            }
+        }
+        tails[i] = x;
+        if (i == size) ++size;
+    }
+    return size;
+}
+
+//leetcode 11
+//Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai)
+// 两条线之间形成一个桶，能装多少水？
+var maxArea = function(height) {
+    var left = 0
+    var right = height.length - 1
+
+    var outN = 0
+    while (left < right) {
+        outN = Math.max(outN, getArea(height, left, right))
+
+        if (height[left] < height[right]) {
+            left++
+        } else {
+            right--
+        }
+    }
+    return outN
+
+    function getArea(arr, i, j) {
+        var out = Math.min(arr[i], arr[j]) * (j - i)
+        return Math.abs(out)
+    }
+};

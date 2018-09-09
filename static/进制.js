@@ -3,7 +3,7 @@ function findBitOne(num, type, dec) {
 
     var str = num.toString(dec)
     var weight
-
+    dec = dec || 10
     if (type === 'high') {
         value = str[0]
         weight = str.length - 1
@@ -67,4 +67,17 @@ function FindNumsAppearOnce(array) {
     })
 
     return res
+}
+
+
+//[start,end]区间内，某个数以二进制表示
+//1的个数最多者，且最小者
+function minLonelyNumber(start, end) {
+    var result = start
+    // x|x+1是将x的最后一个二进制0变为1
+    while ((result | (result + 1)) <= end) {
+        result |= result + 1;
+    }
+
+    return result
 }

@@ -1,105 +1,72 @@
-//4
-// var k = readline()
-// k = parseInt(k)
-// var input = readline().split(" ")
-// for (var i = 0; i < input.length; i++) {
-//     input[i] = parseInt(input[i])
-// }
-// var out = main(k, input[0], input[1], input[2], input[3])
-// var out = main(205, 1, 92, 4, 92)
-// console.log(out)
-function main(k, a, x, b, y) {
-    var data = []
-    for (var m = 0; m <= x; m++) {
-        for (n = 0; n <= y; n++) {
-            if (m * a + n * b === k) {
-                data.push([m, n])
+//https://blog.csdn.net/yang20141109/article/details/51284237
+function two(x, k) {
+    var tmp = x;
+    //判断x的二进制是否为0
+    var index1 = 1;
+    //判断y的二进制是否为1
+    var index2 = 1;
+    //当index2小于等于k时，进入循环
+    while (index2 <= k) {
+        //判断当前tmp某一位是否为0,如果是0,再次判断k相对应的是否为1
+        if ((index1 & tmp) == 0) {
+            //如果k对应的位是1,则tmp 更新为tmp = tmp | index1。
+            if (index2 & k) {
+                tmp = tmp | index1;
+            }
+            //index2向左移动一位
+            index2 <<= 1;
+        }
+        //index1向左移动一位
+        index1 <<= 1;
+    }
+    return (tmp - x);
+}
+//https://blog.csdn.net/zhuqiuhui/article/details/51288547
+function two(x, k) {
+    var temp = 0,
+        remain = 1
+    while (k > 0) {
+        if (x % 2 != 0) {
+            while (x % 2 != 0) {
+                remain = remain * 2
+                x = Math.floor(x / 2)
             }
         }
-    }
-    var res = 0
-    data.forEach(function(item) {
-        var temp = cmn(x, item[0]) * cmn(y, item[1]) % 1000000007
-        res += temp
-        res = res % 1000000007
-    })
-    return res
+        if (k % 2 != 0)
+            temp = temp + remain
 
-}
-
-//Cmn,无序排序
-function cmn(m, n) {
-    var top = 1
-    var bottom = 1
-    if (m < 2 * n) {
-        n = m - n
+        remain = remain * 2
+        x = Math.floor(x / 2)
+        k = Math.floor(k / 2)
     }
-
-    for (var i = m - n + 1; i <= m; i++) {
-        top *= i
-    }
-    for (var i = 2; i <= n; i++) {
-        bottom *= i
-    }
-    return top / bottom
+    return temp
 }
 
 
-//5
-function main(task, machine) {
-    //价值的排序
-    task.sort(function(a, b) {
-        return (200 * a[0] + 3 * a[1] - 200 * b[0] - 3 * b[1])
-    })
+//最大升序和
+//https://blog.csdn.net/qq_37763006/article/details/70245856
+function five(arr) {
+    var i, j, max
+    var a = arr //输入数组  
+    var b = [],
+        temp;
+    var t = a.length
 
-    machine.sort(function(a, b) {
-        return (200 * a[0] + 3 * a[1] - 200 * b[0] - 3 * b[1])
-    })
-
-    var number = 0
-    var res = 0
-
-    for (i = task.length - 1; i >= 0; i--) {
-
-        for (var j = 0; j < machine.length; j++) {
-            var x = task[i][0]
-            var y = task[i][1]
-            var z = machine[j][0]
-            var w = machine[j][1]
-
-            if (x <= z && y <= w) {
-                res = res + 200 * x + 3 * y
-                number++
-                machine.splice(j, 1)
-                break
+    b[0] = a[0];
+    for (i = 1; i < t; i++) {
+        b[i] = a[i];
+        temp = 0;
+        for (j = 0; j < i; j++) {
+            if (a[i] > a[j]) {
+                if (temp < b[j])
+                    temp = b[j];
             }
         }
-
+        b[i] += temp;
     }
-    console.log(number, res)
+    for (i = 0, max = 0; i < t; i++)
+        if (max < b[i])
+            max = b[i];
 
+    return max
 }
-
-var nm = readline().split(" ")
-var n = parseInt(nm[0])
-var m = parseInt(nm[1])
-
-var machine = []
-var task = []
-
-for (var i = 0; i < n; i++) {
-    var temp = readline().split(" ")
-    var arr = [parseInt(temp[0]), parseInt(temp[1])]
-    machine.push(arr)
-}
-
-for (var i = 0; i < m; i++) {
-    var temp = readline().split(" ")
-    var arr = [parseInt(temp[0]), parseInt(temp[1])]
-    task.push(arr)
-}
-
-
-main(task, machine)
-
-
