@@ -1,5 +1,5 @@
 //冒泡排序,从小到大
-function bubbleSort(arr){
+function bubbleSort(arr) {
     //if (!arr || arr.length === 0) return []
     var len = arr.length
     var sorted = false //这次扫描过程中，是否出现逆序对＝＝＝是否有序
@@ -112,4 +112,10 @@ function quickSortHelper(arr, start, end) {
     }
     quickSortHelper(arr, start, left - 1)
     quickSortHelper(arr, left + 1, end)
+}
+
+function swap(arr, i, j) {
+    var temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
 }

@@ -1,18 +1,20 @@
 //常用输入处理方法
-function splitParse(str, separator) {
-    var arr = _split(str, separator)
-    return _parse(arr)
+function splitParse(input, separator) {
+    var _arr = _split(input, separator)
+    return _parse(_arr)
 }
 
-function _split(str, separator) {
-    separator = separator || " "
-    return str.split(separator)
-}
-
-function _parse(arr) {
-    for (var i = 0; i < arr.length; i++) {
-        arr[i] = parseInt(arr[i])
+function _split(input, separator) {
+    if (separator !== "") {
+        separator = separator || /\s+/
     }
-    return arr
+    var input = input.trim()
+    return input.split(separator)
 }
 
+function _parse(_arr) {
+    for (var i = 0; i < _arr.length; i++) {
+        _arr[i] = parseInt(_arr[i])
+    }
+    return _arr
+}
