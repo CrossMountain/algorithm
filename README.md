@@ -1,12 +1,12 @@
 # 适用于在牛客网/赛码网用JavaScript刷算法题
 ---
 ## 目录说明
-> index.html
-> js
+* > index.html
+* > js
 >> index.js 入口文件，里面有3个常用输入处理方法。还有一个简单的示例
 >> stdio.js 算法题的输入用例，请写入这个文件的_input变量
 >> temp.js 暂时存储一些代码
-> static
+* > static
 >> 剑指offer的题目解答，以及一些工具方法。自己看吧
 ---
 ## 使用说明
