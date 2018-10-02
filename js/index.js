@@ -18,3 +18,17 @@ function _parse(_arr) {
     }
     return _arr
 }
+
+/***********示例,适用于牛客网***************/
+var str = readline()
+var arr = splitParse(str)
+var n = arr[0]
+var m = arr[1]
+console.log("first line", arr)
+
+for (var i = 0; i < n; i++) {
+    var line = readline()
+    var arr = splitParse(line, ",")
+    console.log("other line", arr)
+}
+/******************************/
