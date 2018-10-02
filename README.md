@@ -11,5 +11,6 @@
 >> 剑指offer的题目解答，以及一些工具方法。自己看吧
 ---
 ## 使用说明
-* 在 js/stdio.js里输入用例，js/index.js里写算法逻辑。打开index.html，按下F12看输出。
-* 最后，将 index.js的所有内容复制即可。
+* 在 js/stdio.js里的_input变量里输入用例，js/index.js里写算法逻辑。打开index.html，按下F12看输出。
+* 测试用例通过后，将 js/index.js的所有内容复制(包含那3个输入处理方法)提交即可。
+* That's all!其它地方不需要改动。
